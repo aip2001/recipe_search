@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Search</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            max-width: 900px;
+            margin-top: 50px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .card-title {
+            color: #ff6347;
+            font-weight: 600;
+        }
+        .form-control, .btn {
+            border-radius: 25px;
+        }
+        .btn-primary {
+            background-color: #ff6347;
+            border-color: #ff6347;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #ff6347;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .highlight {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            padding: 4px 10px;
+            font-weight: 500;
+        }
+        .search-query {
+            background-color: #ff6347;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #fff;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-body p {
+            color: #555;
+        }
+        .badge-success {
+            background-color: #28a745;
+        }
+        .font-weight-bold {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4 text-center">Recipe Search App</h1>
+        <form method="POST" class="mb-4">
+            <div class="form-group">
+                <label for="ingredients" class="font-weight-bold">Enter ingredients (comma-separated):</label>
+                <input type="text" id="ingredients" name="ingredients" class="form-control" placeholder="e.g., chicken, garlic, tomato">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Search Recipes</button>
+        </form>
+        
+        {% if recipes %}
+            <h2 class="mt-5">Search Results</h2>
+            <div class="search-query">
+                <p>You searched for: <strong>{{ request.form['ingredients'] }}</strong></p>
+              
+            </div>
+            <br><br>
+            {% for item in recipes %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ item.recipe.recipe_name }}</h4>
+                        <p><strong>Matched Ingredients:</strong> 
+                            {% for ing in item.matched_ingredients %}
+                                <span class="highlight">{{ ing }}</span>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                        <p><strong>Number of Matched Ingredients:</strong> <span class="badge badge-success">{{ item.matched_count }}</span></p>
+                        
+                        {% if item.alternative_ingredients %}
+                            <p><strong>Ingredients:</strong> {{ item.recipe.ingredients }}</p>
+                            <p><strong>Instructions:</strong> {{ item.recipe.instructions }}</p>
+                            
+                            <p><strong>Alternative Ingredients for Missing Items:</strong></p>
+                            <ul>
+                                {% for ing, alternatives in item.alternative_ingredients.items() %}
+                                    <li><span class="font-weight-bold">{{ ing | capitalize }}</span>: {{ alternatives | join(', ') }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">All ingredients were included in your search query.</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% elif request.method == 'POST' %}
+            <h2 class="mt-5">No Results Found</h2>
+            <p class="text-muted">Try using different or more common ingredients to expand your search.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
