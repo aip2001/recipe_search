@@ -1,30 +1,30 @@
 # recipe_search
 A Flask-based app to search recipes by ingredients using Elasticsearch. Users input ingredients, and matching recipes are retrieved and displayed. Built with Flask, Elasticsearch, Python, and HTML/CSS. Easy to set up and run locally for efficient recipe searches!
 # Features
-Input ingredients to search for recipes containing those ingredients.
-Displays matching recipes with names, ingredients, and cooking instructions.
-Displays number of ingredients matching in search query and suggested recipes.
-Provide alternatives for ingredients required in suggested recipes and not present in the search query.
-Powered by Elasticsearch for fast and efficient full-text search.
+- Input ingredients to search for recipes containing those ingredients.
+- Displays matching recipes with names, ingredients, and cooking instructions.
+- Displays number of ingredients matching in search query and suggested recipes.
+- Provide alternatives for ingredients required in suggested recipes and not present in the search query.
+- Powered by Elasticsearch for fast and efficient full-text search.
 # Technologies Used
-Flask: Python web framework for building the application.
-Elasticsearch: Used to index and search recipe data.
-HTML & CSS: Front-end for user interaction.
-Python: Back-end logic.
+- Flask: Python web framework for building the application.
+- Elasticsearch: Used to index and search recipe data.
+- HTML & CSS: Front-end for user interaction.
+- Python: Back-end logic.
 # How It Works
-Recipe data is stored in an Elasticsearch index.
-Users can enter ingredients in the search bar.
-The app queries Elasticsearch to find recipes matching the ingredients.
-Results are displayed dynamically on the web page.
+- Recipe data is stored in an Elasticsearch index.
+- Users can enter ingredients in the search bar.
+- The app queries Elasticsearch to find recipes matching the ingredients.
+- Results are displayed dynamically on the web page.
 # Future Work
-Enhanced Search Features - Implement advanced filters (e.g., dietary restrictions, cuisine type, preparation time).
-Add support for fuzzy search and typo tolerance.
-User Authentication and Personalization - Enable user accounts to save favorite recipes.
-Provide personalized recommendations based on user preferences and past searches.
-Improved Recipe Data
-Multilingual Support- Allow users to search recipes and view the interface in different languages.
-Machine Learning Integration - Implement ML algorithms for better ranking and relevance of search results.
-Use recommendation systems to suggest recipes based on user input.
+- Enhanced Search Features - Implement advanced filters (e.g., dietary restrictions, cuisine type, preparation time).
+- Add support for fuzzy search and typo tolerance.
+- User Authentication and Personalization - Enable user accounts to save favorite recipes.
+- Provide personalized recommendations based on user preferences and past searches.
+- Improved Recipe Data
+- Multilingual Support- Allow users to search recipes and view the interface in different languages.
+- Machine Learning Integration - Implement ML algorithms for better ranking and relevance of search results.
+- Use recommendation systems to suggest recipes based on user input.
 # Setup Instructions
 1. Clone the Repository
 Open a terminal or command prompt.
